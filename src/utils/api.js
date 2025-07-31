@@ -1,6 +1,6 @@
 //API Calling functions
 
-async function getLoremIpsum(amount = 1) {
+export async function getLoremIpsum(amount = 1) {
   try {
     const response = await fetch(`/api/lorem-ipsum?amount=${amount}`)
     const data = await response.json()
