@@ -1,6 +1,8 @@
+'use client'
+
 import { useState } from 'react'
-import { ThreeDButton } from '../template-components/ThreeDButton'
-import { getLoremIpsum } from '../utils/api'
+import { ThreeDButton } from '@/template-components/ThreeDButton'
+import { getLoremIpsum } from '@/utils/api'
 
 export function LipsumGenerator() {
   const [lipsum, setLipsum] = useState('')

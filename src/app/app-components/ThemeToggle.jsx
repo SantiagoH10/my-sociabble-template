@@ -1,4 +1,6 @@
-import { useTheme } from '../context/ThemeContext'
+'use client'
+
+import { useTheme } from '@/context/ThemeContext'
 import { Sun, Moon, TvMinimal } from 'lucide-react'
 
 const ThemeToggle = () => {
