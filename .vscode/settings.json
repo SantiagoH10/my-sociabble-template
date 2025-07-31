@@ -7,5 +7,5 @@
   "editor.wordWrap": "on",
   "editor.minimap.enabled": true,
   "workbench.editor.showTabs": "multiple",
-  "editor.renderWhitespace": "boundary"
+  "editor.renderWhitespace": "boundary",
 }

@@ -1,9 +1,9 @@
-import { createRapidAPIHandler } from '../lib/rapidapi.js'
+import { createRapidAPIHandler } from './rapidapi.js'
 
 // Transform function to shape the response
 const transformer = result => ({
   title: 'Lorem Ipsum',
-  typeString: result.text || result,
+  text: result.text || result,
 })
 
 // Create handler with default parameters

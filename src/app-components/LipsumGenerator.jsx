@@ -6,8 +6,9 @@ export function LipsumGenerator() {
   const [lipsum, setLipsum] = useState('')
 
   const genLipsum = async () => {
-    const text = await getLoremIpsum()
-    setLipsum(text)
+    const lipsumObj = await getLoremIpsum()
+    console.log(lipsumObj)
+    setLipsum(lipsumObj?.text)
   }
 
   return (
