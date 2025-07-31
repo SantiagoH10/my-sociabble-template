@@ -1,4 +1,4 @@
-import { createRapidAPIHandler } from './rapidapi.js'
+import { createRapidAPIHandler } from '../lib/rapidapi.js'
 
 // Transform function to shape the response
 const transformer = result => ({

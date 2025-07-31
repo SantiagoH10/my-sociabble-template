@@ -16,15 +16,17 @@ export function LipsumGenerator() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-2 bg-blue-100 p-3 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center gap-2">
-        <p className="pb-2 text-xl font-semibold text-gray-700 dark:text-white">
+        <p className="pb-2 text-xl font-semibold text-gray-700 dark:text-gray-100">
           Lipsum generator
         </p>
         <ThreeDButton onClick={() => genLipsum()} className="font-semibold">
           Generate
         </ThreeDButton>
       </div>
-      <div className="mx-auto w-1/2 flex-[0.5] rounded-xl bg-blue-200 shadow-md dark:bg-gray-600">
-        <p>{lipsum}</p>
+      <div className="mx-auto flex w-1/2 flex-[0.5] items-center justify-center rounded-xl bg-blue-200 p-4 px-6 text-justify shadow-md dark:bg-teal-600">
+        <p className="pb-2 text-lg font-semibold text-gray-700 dark:text-gray-100">
+          {lipsum}
+        </p>
       </div>
     </div>
   )

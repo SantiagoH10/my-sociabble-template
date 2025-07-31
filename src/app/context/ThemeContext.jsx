@@ -4,7 +4,6 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext()
 
-// Custom hook wrapping useContext
 export function useTheme() {
   const context = useContext(ThemeContext)
   if (!context) {
@@ -13,13 +12,11 @@ export function useTheme() {
   return context
 }
 
-// Custom Provider and Toggle logic
 export function ThemeProvider({ children }) {
   const [isDark, setIsDark] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false) // Prevent hydration mismatch
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    // Only run on client side after hydration
     const savedTheme = localStorage.getItem('theme')
     const systemPrefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)',
@@ -28,37 +25,28 @@ export function ThemeProvider({ children }) {
       savedTheme === 'dark' || (!savedTheme && systemPrefersDark)
 
     setIsDark(shouldBeDark)
-    setIsLoaded(true) // Mark as loaded after client-side initialization
-
-    // Apply theme class
-    if (shouldBeDark) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    setIsLoaded(true)
+    document.documentElement.setAttribute(
+      'data-theme',
+      shouldBeDark ? 'dark' : 'light',
+    )
   }, [])
 
   const toggleTheme = () => {
     const newTheme = !isDark
     setIsDark(newTheme)
-
     localStorage.setItem('theme', newTheme ? 'dark' : 'light')
-
-    if (newTheme) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    document.documentElement.setAttribute(
+      'data-theme',
+      newTheme ? 'dark' : 'light',
+    )
   }
 
   const resetToSystemPreference = () => {
     const systemPrefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)',
     ).matches
-
-    if (systemPrefersDark === isDark) {
-      return
-    } else {
+    if (systemPrefersDark !== isDark) {
       toggleTheme()
     }
   }
@@ -67,7 +55,7 @@ export function ThemeProvider({ children }) {
     isDark,
     toggleTheme,
     resetToSystemPreference,
-    isLoaded, // Expose loading state
+    isLoaded,
   }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
