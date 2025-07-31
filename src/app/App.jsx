@@ -1,3 +1,5 @@
+'use client'
+
 import { MySociabble } from '@/app-components/MySociabble'
 import { Footer } from '@/app-components/Footer'
 import { ThemeProvider } from '@/context/ThemeContext'

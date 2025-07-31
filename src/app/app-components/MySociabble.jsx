@@ -1,6 +1,6 @@
 export function MySociabble() {
   return (
-    <header className="dark:bg-navy bg-gray-300 shadow-lg">
+    <header className="bg-ccred shadow-lg">
       <div className="container mx-auto px-2 py-4">
         <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:gap-6">
           <img

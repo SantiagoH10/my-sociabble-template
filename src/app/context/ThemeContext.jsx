@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext()
 
-//Custom hook wrapping useContext
+// Custom hook wrapping useContext
 export function useTheme() {
   const context = useContext(ThemeContext)
   if (!context) {
@@ -13,11 +13,13 @@ export function useTheme() {
   return context
 }
 
-//Custom Provider and Toggle logic
+// Custom Provider and Toggle logic
 export function ThemeProvider({ children }) {
   const [isDark, setIsDark] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false) // Prevent hydration mismatch
 
   useEffect(() => {
+    // Only run on client side after hydration
     const savedTheme = localStorage.getItem('theme')
     const systemPrefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)',
@@ -26,7 +28,9 @@ export function ThemeProvider({ children }) {
       savedTheme === 'dark' || (!savedTheme && systemPrefersDark)
 
     setIsDark(shouldBeDark)
+    setIsLoaded(true) // Mark as loaded after client-side initialization
 
+    // Apply theme class
     if (shouldBeDark) {
       document.documentElement.classList.add('dark')
     } else {
@@ -63,6 +67,7 @@ export function ThemeProvider({ children }) {
     isDark,
     toggleTheme,
     resetToSystemPreference,
+    isLoaded, // Expose loading state
   }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

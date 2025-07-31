@@ -1,3 +1,5 @@
+'use client'
+
 import ThemeToggle from '@/app-components/ThemeToggle'
 
 export function Footer() {
